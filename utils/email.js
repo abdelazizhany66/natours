@@ -11,24 +11,15 @@ module.exports = class Email{
     }
 
     newTransport(){
-        if(process.env.NODE_ENV==='production'){
         return  nodemailer.createTransport({
-            service:'sendGrid',
+            service:'gmail',
             auth:{
-                user:process.env.USER_SENDGRID,
-                pass:process.env.PASS_SENDGRID
+                user:process.env.USER_GMAIL,
+                pass:process.env.PASS_GMAIL
             }
         })
-        } 
-        return nodemailer.createTransport({
-            host:'sandbox.smtp.mailtrap.io', 
-            port:587,
-            secure: false,
-            auth:{
-                username:'73e5917ec75001',
-                password:'031c44df0ccd34' 
-            }
-        })
+        
+
     }
 
     async send(template, subject){
